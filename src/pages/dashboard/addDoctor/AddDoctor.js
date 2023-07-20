@@ -29,7 +29,7 @@ const AddDoctor = () => {
                     }
 
 
-                    fetch('http://localhost:5000/doctors', {
+                    fetch('https://doctors-portal-server-three-black.vercel.app/doctors', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
@@ -52,7 +52,7 @@ const AddDoctor = () => {
         queryKey: 'appointmentSpecialty',
         queryFn: async () => {
             fetch("")
-            const res = await fetch('http://localhost:5000/appointmentSpecialty')
+            const res = await fetch('https://doctors-portal-server-three-black.vercel.app/appointmentSpecialty')
             const data = await res.json()
             return data
         }

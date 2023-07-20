@@ -13,14 +13,14 @@ const AvailableAppointment = ({ selected }) => {
     const { data: appointmentOptions = [], refetch } = useQuery({
         queryKey: ['appointmentOption', date],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/appointmentOption?date=${date}`)
+            const res = await fetch(`https://doctors-portal-server-three-black.vercel.app/appointmentOption?date=${date}`)
             const data = res.json()
             return data;
         }
     })
 
     // useEffect(() => {
-    //     fetch('http://localhost:5000/appointmentOption')
+    //     fetch('https://doctors-portal-server-three-black.vercel.app/appointmentOption')
     //         .then(res => res.json())
     //         .then(data => setAppointmentOptions(data))
     // }, [])

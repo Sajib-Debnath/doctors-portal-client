@@ -13,6 +13,8 @@ import AddDoctor from "../pages/dashboard/addDoctor/AddDoctor";
 import ManageDoctors from "../pages/dashboard/manageDoctors/ManageDoctors";
 import Payment from "../pages/dashboard/payment/Payment";
 import DisplayError from "../pages/shared/DisplayError";
+import ContactUs from "../pages/contactUs/ContactUs";
+import AboutUs from "../pages/aboutUs/AboutUs";
 
 const router = createBrowserRouter([
     {
@@ -35,7 +37,15 @@ const router = createBrowserRouter([
             {
                 path: '/appointment',
                 element: <PrivateRoute> <Appointment /></PrivateRoute>
-            }
+            },
+            {
+                path: '/contactUs',
+                element: <ContactUs />
+            },
+            {
+                path: '/aboutUs',
+                element: <AboutUs />
+            },
 
         ]
     },
@@ -63,7 +73,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <AdminRoute><Payment></Payment></AdminRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({ params }) => fetch(`https://doctors-portal-server-three-black.vercel.app/bookings/${params.id}`)
             },
 
         ]

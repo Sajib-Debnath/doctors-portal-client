@@ -19,12 +19,9 @@ const SignUp = () => {
     }
 
     const handleSignUp = (data) => {
-        console.log(data);
         setSignUPError('');
         createUser(data.email, data.password)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
+            .then(() => {
                 toast("User created successfully")
                 const userInfo = {
                     displayName: data.name
@@ -46,7 +43,7 @@ const SignUp = () => {
             name,
             email
         }
-        fetch("http://localhost:5000/users", {
+        fetch("https://doctors-portal-server-three-black.vercel.app/users", {
             method: "POST",
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(user)

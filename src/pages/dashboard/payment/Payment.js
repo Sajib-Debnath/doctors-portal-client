@@ -5,7 +5,7 @@ import CheckOut from './CheckOut';
 import { loadStripe } from '@stripe/stripe-js';
 
 const stripePromise = loadStripe(process.env.REACT_APP_Stripe_PK);
-console.log(stripePromise)
+// console.log(stripePromise)
 
 const Payment = () => {
     const booking = useLoaderData();
@@ -21,7 +21,7 @@ const Payment = () => {
             <p className="text-xl">Please pay <strong>${price}</strong> for your appointment on {appointmentDate} at {slot}</p>
             <div className='w-96 mt-12 '>
                 <Elements stripe={stripePromise}>
-                    <CheckOut />
+                    <CheckOut booking={booking} />
                 </Elements>
             </div>
         </div>

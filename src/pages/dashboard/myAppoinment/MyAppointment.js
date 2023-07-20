@@ -6,8 +6,24 @@ import { Link } from "react-router-dom";
 const MyAppointment = () => {
     const { user } = useContext(AuthContext)
 
-    const url = `http://localhost:5000/bookings?email=${user?.email}`
-    const { data: bookings = [] } = useQuery({
+    // const [bookings, setBookings] = useState([])
+    // useEffect(() => {
+    //     fetch('https://doctors-portal-server-three-black.vercel.app/bookings?email=${user?.email', {
+    //         headers: {
+    //             authorization: `bearer ${localStorage.getItem('accessToken')}`
+    //         }
+    //     })
+    //         .then(res => res.json())
+    //         .then((data) => {
+    //             setBookings(data)
+    //         })
+    // }, [user?.email])
+    // // if (user?.email) {
+    // }
+
+
+    const url = `https://doctors-portal-server-three-black.vercel.app/bookings?email=${user?.email}`
+    const { data: bookings = [], isLoading } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
@@ -18,9 +34,15 @@ const MyAppointment = () => {
             const data = await res.json()
             return data;
         }
-    }
-    )
+    })
 
+    if (isLoading) {
+        return <p>Loading</p>
+    }
+
+    // if (!bookings) {
+    //     return <p>bad request</p>
+    // }
 
     return (
         <div>
@@ -39,6 +61,7 @@ const MyAppointment = () => {
                     </thead>
                     <tbody>
                         {
+                            bookings &&
                             bookings.map((booking, index) =>
                                 <tr key={index} className="hover">
                                     <th>{index + 1}</th>
@@ -71,6 +94,8 @@ const MyAppointment = () => {
             </div>
         </div>
     );
+
+
 };
 
 export default MyAppointment;
